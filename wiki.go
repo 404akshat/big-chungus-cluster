@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"html/template"
 	"log"
 	"net/http"
@@ -66,9 +67,19 @@ func saveHandler(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/view/"+title, http.StatusFound)
 }
 
+func rootHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprint(w, "Hello")
+}
+
+func healthHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprint(w, "200 OK")
+}
+
 func main() {
 	http.HandleFunc("/edit/", editHandler)
 	http.HandleFunc("/save/", saveHandler)
 	http.HandleFunc("/view/", viewHandler)
+	http.HandleFunc("/", rootHandler)
+	http.HandleFunc("/health/", healthHandler)
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
