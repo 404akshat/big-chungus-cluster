@@ -23,8 +23,20 @@ func getList(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, tdlists)
 }
 
+func postList(c *gin.Context) {
+	var newList to_do_list
+
+	if err := c.BindJSON(&newList); err != nil {
+		return
+	}
+
+	tdlists = append(tdlists, newList)
+	c.IndentedJSON(http.StatusCreated, newList)
+}
+
 func main() {
 	router := gin.Default()
 	router.GET("/items", getList)
+	router.POST("/items", postList)
 	router.Run("localhost:8080")
 }
