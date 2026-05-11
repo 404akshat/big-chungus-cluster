@@ -34,9 +34,22 @@ func postList(c *gin.Context) {
 	c.IndentedJSON(http.StatusCreated, newList)
 }
 
+func getListByID(c *gin.Context) {
+	id := c.Param("id")
+
+	for _, a := range tdlists {
+		if a.ID == id {
+			c.IndentedJSON(http.StatusOK, a)
+			return
+		}
+	}
+	c.IndentedJSON(http.StatusNotFound, gin.H{"message": "Item not found!"})
+}
+
 func main() {
 	router := gin.Default()
 	router.GET("/items", getList)
+	router.GET("/items/:id", getListByID)
 	router.POST("/items", postList)
 	router.Run("localhost:8080")
 }
