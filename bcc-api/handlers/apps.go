@@ -1,17 +1,10 @@
 package handlers
 
 import (
-	"encoding/json"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
-
-type Response struct {
-	Status  string `json:"status"`
-	Message string `json:"message"`
-	Code    int    `json:"code"`
-}
 
 type apps struct {
 	ID    string `json:"id"`
@@ -41,31 +34,9 @@ func CreateApp(c *gin.Context) {
 }
 
 func GetApps(c *gin.Context) {
-	id := c.Param("id")
-
-	for _, a := range app {
-		if a.ID == id {
-			c.IndentedJSON(http.StatusOK, a)
-			return
-		}
-	}
-	c.IndentedJSON(http.StatusNotFound, gin.H{"message": "Item not found!"})
+	c.IndentedJSON(http.StatusOK, app)
 }
 
-func HealthHandler() ([]byte, error) {
-	msg := Response{
-		Status: "ok",
-		Code:   200,
-	}
-	jsonData, err := json.Marshal(msg)
-	return jsonData, err
+func HealthHandler(c *gin.Context) {
+	c.IndentedJSON(http.StatusOK, gin.H{"status": "ok"})
 }
-
-// func main() {
-// 	router := gin.Default()
-
-// 	router.GET("/apps", GetApps)
-//  router.GET("/items/:id", getListByID)
-// 	router.POST("/items", CreateApp)
-// 	router.Run("localhost:8080")
-// }

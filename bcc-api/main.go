@@ -1,9 +1,11 @@
 package main
 
 import (
+	"bcc-api/handlers"
 	"fmt"
-	"log"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
 func rootHandler(w http.ResponseWriter, r *http.Request) {
@@ -15,5 +17,10 @@ func healthHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	router := gin.Default()
+
+	router.GET("/health", handlers.HealthHandler)
+	router.GET("/apps", handlers.GetApps)
+	router.POST("/apps", handlers.CreateApp)
+	router.Run("localhost:8080")
 }
