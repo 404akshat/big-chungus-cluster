@@ -2,10 +2,8 @@ package main
 
 import (
 	"fmt"
-	"html/template"
 	"log"
 	"net/http"
-	"os"
 )
 
 type Page struct {
@@ -13,12 +11,12 @@ type Page struct {
 	Body  []byte
 }
 
-var templates = template.Must(template.ParseFiles("edit.html", "view.html"))
+// var templates = template.Must(template.ParseFiles("edit.html", "view.html"))
 
-func (p *Page) save() error {
-	filename := p.Title + ".txt"
-	return os.WriteFile(filename, p.Body, 0600)
-}
+// func (p *Page) save() error {
+// 	filename := p.Title + ".txt"
+// 	return os.WriteFile(filename, p.Body, 0600)
+// }
 
 // func loadPage(title string) (*Page, error) {
 // 	filename := title + ".txt"
