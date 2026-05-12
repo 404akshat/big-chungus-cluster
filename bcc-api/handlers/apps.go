@@ -1,11 +1,17 @@
-package main
+package handlers
 
 import (
+	"encoding/json"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
 
+type Response struct {
+	Status  string `json:"status"`
+	Message string `json:"message"`
+	Code    int    `json:"code"`
+}
 type to_do_list struct {
 	ID       string `json:"id"`
 	Title    string `json:"title"`
@@ -44,6 +50,15 @@ func getListByID(c *gin.Context) {
 		}
 	}
 	c.IndentedJSON(http.StatusNotFound, gin.H{"message": "Item not found!"})
+}
+
+func HealthHandler() ([]byte, error) {
+	msg := Response{
+		Status: "ok",
+		Code:   200,
+	}
+	jsonData, err := json.Marshal(msg)
+	return jsonData, err
 }
 
 func main() {
