@@ -12,6 +12,7 @@ type Response struct {
 	Message string `json:"message"`
 	Code    int    `json:"code"`
 }
+
 type apps struct {
 	ID    string `json:"id"`
 	Title string `json:"title"`
@@ -60,10 +61,11 @@ func HealthHandler() ([]byte, error) {
 	return jsonData, err
 }
 
-func main() {
-	router := gin.Default()
-	router.GET("/items", getList)
-	router.GET("/items/:id", getListByID)
-	router.POST("/items", postList)
-	router.Run("localhost:8080")
-}
+// func main() {
+// 	router := gin.Default()
+
+// 	router.GET("/apps", GetApps)
+//  router.GET("/items/:id", getListByID)
+// 	router.POST("/items", CreateApp)
+// 	router.Run("localhost:8080")
+// }
