@@ -12,38 +12,37 @@ type Response struct {
 	Message string `json:"message"`
 	Code    int    `json:"code"`
 }
-type to_do_list struct {
-	ID       string `json:"id"`
-	Title    string `json:"title"`
-	Time     string `json:"time"`
-	Priority int    `json:"priority"`
+type apps struct {
+	ID    string `json:"id"`
+	Title string `json:"title"`
+	Desc  string `json:"desc"`
+	Size  int    `json:"size"`
 }
 
-var tdlists = []to_do_list{
-	{ID: "1", Title: "Apply for Internships", Time: "10 AM", Priority: 1},
-	{ID: "2", Title: "Big Chungus Cluster", Time: "2 PM", Priority: 1},
-	{ID: "3", Title: "Coursera", Time: "6 PM", Priority: 2},
+var app = []apps{
+	{ID: "1", Title: "Asphalt", Desc: "Racing", Size: 1900},
+	{ID: "2", Title: "Clash Of Clans", Desc: "Startegy", Size: 1300},
+	{ID: "3", Title: "Subway Surfers", Desc: "Arcade", Size: 350},
 }
 
-func getList(c *gin.Context) {
-	c.IndentedJSON(http.StatusOK, tdlists)
-}
+func CreateApp(c *gin.Context) {
+	var newApp apps
 
-func postList(c *gin.Context) {
-	var newList to_do_list
-
-	if err := c.BindJSON(&newList); err != nil {
+	if err := c.BindJSON(&newApp); err != nil {
 		return
 	}
 
-	tdlists = append(tdlists, newList)
-	c.IndentedJSON(http.StatusCreated, newList)
+	app = append(app, newApp)
+	c.IndentedJSON(http.StatusCreated, newApp)
+
+	c.IndentedJSON(http.StatusOK, gin.H{"message": "app recieved"})
+
 }
 
-func getListByID(c *gin.Context) {
+func GetApps(c *gin.Context) {
 	id := c.Param("id")
 
-	for _, a := range tdlists {
+	for _, a := range app {
 		if a.ID == id {
 			c.IndentedJSON(http.StatusOK, a)
 			return
