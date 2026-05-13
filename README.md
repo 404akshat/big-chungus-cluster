@@ -35,7 +35,7 @@ Managing Kubernetes manifests, ingress controllers, and scaling policies is a fu
 ## 🔧 Current Status
 
 The project is currently being built out. Weekly progress reports and live updates can be tracked here:
-**🔗 Progress Dashboard:** [https://404akshat.github.io/SkyNet/](https://404akshat.github.io/SkyNet/)
+* **🔗 Progress Dashboard:** [My LinkedIN](https://www.linkedin.com/in/akshat-sharma-devsecop/)
 
 ---
 
