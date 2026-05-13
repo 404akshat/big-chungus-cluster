@@ -22,5 +22,5 @@ func main() {
 	router.GET("/health", handlers.HealthHandler)
 	router.GET("/apps", handlers.GetApps)
 	router.POST("/apps", handlers.CreateApp)
-	router.Run("localhost:8080")
+	router.Run(":8080")
 }
