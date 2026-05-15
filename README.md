@@ -10,7 +10,7 @@
 Aether OS is a self-hosted Platform-as-a-Service built entirely from scratch. The goal is simple: **you provide a Docker image, Aether OS handles the rest** — deployments, scaling, monitoring, security, and self-healing. All of it. No managed cloud. No abstractions you don't own.
 
 > [!CAUTION]
-> **Active Development:** Built and documented weekly in public. This is not a tutorial project — every component is production-grade or working toward it. Progress is tracked weekly on LinkedIn.
+> **Active Development:** Built and documented weekly in public. This is not a tutorial project, every component is production-grade or working toward it. Progress is tracked weekly on LinkedIn.
 
 ---
 
@@ -105,9 +105,8 @@ big-chungus-cluster/
 │   ├── go.mod
 │   └── go.sum
 ├── k8s/                      # Kubernetes manifests
-│   └── bcc-api/
-│       ├── deployment.yaml
-│       └── service.yaml
+│   ├── deployment.yaml
+│   └── service.yaml
 └── README.md
 ```
 
